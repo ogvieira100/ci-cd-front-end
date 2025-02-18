@@ -2,7 +2,12 @@
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
+  "include": [
+    "src/**/*.cy.ts",
+    "src/**/*.ts"
+  ],
   "compilerOptions": {
+    "types": ["cypress"],
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

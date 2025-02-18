@@ -1,0 +1,25 @@
+name: Deployment Front End
+on: [push,workflow_dispatch]
+jobs: 
+    cypress-run:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            # Configura Node.js
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                 node-version: '20' 
+            # Instala as dependências        
+            - name: Install Dependencies
+              run: npm install
+            # Roda o Cypress testando os componentes               
+            - name: Run Cypress
+              run: npx cypress run --component
+    deploy:
+        runs-on: ubuntu-latest
+        needs: cypress-run
+        steps:
+           - name: Log Failure
+             run: echo "Test job failed. Executing failure handling tasks."            
